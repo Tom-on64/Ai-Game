@@ -1,0 +1,115 @@
+<!-- 1 File Game -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Based Game Thing</title>
+</head>
+<style>
+    /* Style */
+    body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    body {
+        padding: 0px;
+        margin: 0px;
+        text-align: center;
+        background-color: black;
+        user-select: none;
+        align-items: top center;
+        justify-content: center;
+    }
+
+    #intro {
+        background-color: dodgerblue;
+        color: ghostwhite;
+        margin: 5px;
+        padding: 2px;
+        width: 20em;
+        display: block;
+        animation: fadeEffect 0.8s;
+    }
+
+    #game {
+        color: white;
+        display: none;
+        width: 90%;
+        text-align: center;
+        border: 1px solid #FFF;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tab {
+        margin: 3px;
+        border: 1px solid #FFF;
+        width: 49%;
+    }
+
+    /* Animation */
+    @keyframes fadeEffect {
+        from {
+            opacity: 0
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+</style>
+
+<body>
+    <!-- HTML -->
+    <div id="intro">
+        Deadly Nova
+        <div style="background-color: black; margin-top: 0px;">
+            <p>Story Info</p>
+            <div onClick='document.getElementById("game").style.display = "flex"; document.getElementById("intro").style.display = "none"'
+                style="text-align: right; font-size: 1.5em;">></div>
+        </div>
+    </div>
+    <div id="game">
+        <h3>Deadly Nova</h3>
+        <br>
+        <div class="tab">
+            fgf
+        </div>
+        <div class="tab">
+            gffg
+        </div>
+        <div class="tab">
+            fggfg
+        </div>
+    </div>
+
+    <script>
+// JavaScript
+
+    </script>
+</body>
+
+</html>
+
+<!--    Notes   -->
+<!--
+    * Write A Story
+    * Add Buttons And etc.
+
+    Story
+
+    Your world has been destroyed in an event called "The Great Sweep".
+    The Great Sweep deleted EVERYTHING except your spaceship which was currently traveling thru the [REDACTED].
+    You are locekd inside and have to conserve energy and oxygen so you can survive.
+    Your ship is broken so you cant see out. The only way to see outside is using the camera to see snapshots everynow and then.
+    The [REDACTED] has added a few new features to the ship.
+     --- 
+    How To Play
+
+    You have to go to locations on your map for resources to upgrade your ship to get more resources and uncover the secrets of this world.
+-->
