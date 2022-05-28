@@ -1,4 +1,4 @@
-<!-- 1 File Game -->
+<!-- Project -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Based Game Thing</title>
+    <title>DEADLY NOVA</title>
 </head>
 <style>
     /* Style */
@@ -36,7 +36,7 @@
     }
 
     #game {
-        color: white;
+        color: #FFF;
         display: none;
         width: 90%;
         text-align: center;
@@ -50,6 +50,13 @@
         margin: 3px;
         border: 1px solid #FFF;
         width: 49%;
+    }
+
+    canvas #map {
+        width: 80%;
+        height: 80%;
+        border: 1px solid #0F0;
+        background-color: #222;
     }
 
     /* Animation */
@@ -75,21 +82,103 @@
         </div>
     </div>
     <div id="game">
-        <h3>Deadly Nova</h3>
+        <h2 style="padding-left: 30%; padding-right: 25px;">Deadly Nova</h2>
+        <h3 style="padding-left: 25px; padding-right: 30%;">1.0</h3>
         <br>
-        <div class="tab">
-            fgf
+        <div class="tab" id="map">
+            <h3>MAP</h3>
+            <canvas id="mapCanvas"></canvas>
         </div>
-        <div class="tab">
-            gffg
+        <div class="tab" id="controls">
+            <h3>CONTROLL</h3>
+            <b>LOCATION</b><br>
+            <button id="controlsMoveLeft" style="background-color: #999; color: #0F0; border: 1px solid #666;" onClick="onHeld(document.getElementById('controlsMoveLeft'), move('left'), 100, 1)">
+                &#x25C0</button> <span id="controlsAngleText">0</span>° <button id="controlsMoveRight" style="background-color: #999; color: #0F0; border: 1px solid #666;" onClick="onHeld(document.getElementById('controlsMoveRight'), move('right'), 100, 1)">
+                &#x25B6</button><br>
+            <button id="controlsMoveUp" style="background-color: #999; color: #0F0; border: 1px solid #666;" onClick="onHeld(document.getElementById('controlsMoveUp'), move('up'), 100, 1)">
+                &#x25B2</button> X:<span id="controlsXText">0</span><br>
+            <button id="controlsMoveDown" style="background-color: #999; color: #0F0; border: 1px solid #666;" onClick="onHeld(document.getElementById('controlsMoveDown'), move('down'), 100, 1)">
+                &#x25BC</button> Y:<span id="controlsYText">0</span><br>
         </div>
-        <div class="tab">
-            fggfg
+        <div class="tab" id="status">
+            <h3>STATUS</h3>
         </div>
+    </div>
+
+    <div id="database">
     </div>
 
     <script>
 // JavaScript
+    var ship = {
+        x: 200,
+        y: 200,
+        a: 0
+    }
+
+    function onHeld(btn, action, start, speedup) {
+            let t
+
+            let repeat = function () {
+                action()
+                t = setTimeout(repeat, start)
+                start = start / speedup
+            }
+
+            btn.mousedown = function () {
+                repeat()
+            }
+
+            btn.mouseup = function () {
+                clearTimeout(t)
+            }
+        }
+
+    function mapUpdate() {
+        let canvas = document.getElementById("mapCanvas")
+        let ctx = canvas.getContext("2d")
+    }
+
+    function move(direction) {
+        s = ship
+
+        if (direction == "up") {
+            let radians = (Math.PI / 180) * (s.a - 90)
+            s.x = s.x + 1 * Math.cos(radians)
+            s.y = s.y + 1 * Math.sin(radians)
+        }
+        else if (direction == "down") {
+            let radians = (Math.PI / 180) * (s.a - 90)
+            s.x = s.x - 1 * Math.cos(radians)
+            s.y = s.y - 1 * Math.sin(radians)
+        }
+        else if (direction == "right") {
+            s.a += 1
+        }
+        else if (direction == "left") {
+            s.a -= 1
+        }
+        else {
+            console.log("Invalid Movement Direction!")
+        }
+    }
+
+    function onUpdate() {
+        // Math Updates
+        if (ship.a > 360) {         // max is 360°
+            ship.a -= 345
+        }
+        if (ship.a < 0) {           // min is 0°
+            ship.a += 345
+        }
+
+        // Ui Updates
+        document.getElementById("controlsAngleText").textContent = Math.round(ship.a)
+        document.getElementById("controlsXText").textContent = Math.round(ship.x)
+        document.getElementById("controlsYText").textContent = Math.round(ship.y)
+    }
+
+    setInterval(onUpdate, 50)
 
     </script>
 </body>
