@@ -103,6 +103,7 @@
         </div>
         <div class="tab" id="status" style="height: 15em;">
             <h3>STATUS</h3>
+            Ship Stability: <span id="healthText"></span>%
         </div>
     </div>
 
@@ -115,7 +116,8 @@
         x: 50,
         y: 50,
         a: 0,
-        r: 5
+        r: 5,
+        health: 100
     }
 
     function onHeld(btn, action, start, speedup) {
@@ -213,7 +215,20 @@
         mapUpdate()
     }
 
+    // saving
+    function saveGame() {
+        let saveFile = ship
+        localStorage.setItem("saveFile", JSON.stringify(saveFile))
+    }
+
+    function loadGame() {
+        let saveFile = JSON.parse(localStorage.getItem("saveFile"))
+        ship = JSON.parse(localStorage.getItem("saveFile"))
+    }
+
     setInterval(onUpdate, 50)
+    setInterval(saveGame, 5000)
+    loadGame()
 
     </script>
 </body>
