@@ -85,22 +85,23 @@
         <h2 style="padding-left: 30%; padding-right: 25px;">Deadly Nova</h2>
         <h3 style="padding-left: 25px; padding-right: 30%;">1.0</h3>
         <br>
-        <div class="tab" id="map">
-            <h3>MAP</h3>
-            <canvas id="mapCanvas"></canvas>
-        </div>
-        <div class="tab" id="controls">
+        <div class="tab" id="controls" style="height: 15em;">
             <h3>CONTROLL</h3>
-            <b>LOCATION</b><br>
+            <b>ROTATION</b><br>
             <button id="controlsMoveLeft" style="background-color: #999; color: #0F0; border: 1px solid #666;" onClick="onHeld(document.getElementById('controlsMoveLeft'), move('left'), 100, 1)">
                 &#x25C0</button> <span id="controlsAngleText">0</span>° <button id="controlsMoveRight" style="background-color: #999; color: #0F0; border: 1px solid #666;" onClick="onHeld(document.getElementById('controlsMoveRight'), move('right'), 100, 1)">
                 &#x25B6</button><br>
+            <b>POSITION</b><br> 
             <button id="controlsMoveUp" style="background-color: #999; color: #0F0; border: 1px solid #666;" onClick="onHeld(document.getElementById('controlsMoveUp'), move('up'), 100, 1)">
                 &#x25B2</button> X:<span id="controlsXText">0</span><br>
             <button id="controlsMoveDown" style="background-color: #999; color: #0F0; border: 1px solid #666;" onClick="onHeld(document.getElementById('controlsMoveDown'), move('down'), 100, 1)">
                 &#x25BC</button> Y:<span id="controlsYText">0</span><br>
         </div>
-        <div class="tab" id="status">
+        <div class="tab" id="map" style="height: 15em;">
+            <h3>MAP</h3>
+            <canvas id="mapCanvas"></canvas>
+        </div>
+        <div class="tab" id="status" style="height: 15em;">
             <h3>STATUS</h3>
         </div>
     </div>
@@ -111,9 +112,10 @@
     <script>
 // JavaScript
     var ship = {
-        x: 200,
-        y: 200,
-        a: 0
+        x: 50,
+        y: 50,
+        a: 0,
+        r: 5
     }
 
     function onHeld(btn, action, start, speedup) {
@@ -137,9 +139,40 @@
     function mapUpdate() {
         let canvas = document.getElementById("mapCanvas")
         let ctx = canvas.getContext("2d")
+
+        function boundryCheck() {
+            // Up
+            if (ship.y < ship.r) {
+                ship.y = ship.r
+            }
+            // Down
+            if (ship.y > canvas.height - ship.r) {
+                ship.y = canvas.height - ship.r
+            }
+            // Left
+            if (ship.x < ship.r) {
+                ship.x = ship.r
+            }
+            // Right
+            if (ship.x > canvas.width - ship.r) {
+                ship.x = canvas.width - ship.r
+            }
+        }
+
+        ctx.fillStyle = "lime"
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+        ctx.fillStyle = "black"
+        ctx.fillRect(3, 3, canvas.width - 6, canvas.height - 6)
+        ctx.fillStyle = "lime"
+        ctx.beginPath()
+        ctx.arc(ship.x / 1, ship.y / 1, ship.r, 0, Math.PI * 2)
+        ctx.fill()
+
+        ctx.fillStyle = "black"
     }
 
     function move(direction) {
+        onUpdate()
         s = ship
 
         if (direction == "up") {
@@ -161,21 +194,23 @@
         else {
             console.log("Invalid Movement Direction!")
         }
+        onUpdate()
     }
 
     function onUpdate() {
         // Math Updates
         if (ship.a > 360) {         // max is 360°
-            ship.a -= 345
+            ship.a -= 359
         }
         if (ship.a < 0) {           // min is 0°
-            ship.a += 345
+            ship.a += 359
         }
 
         // Ui Updates
         document.getElementById("controlsAngleText").textContent = Math.round(ship.a)
         document.getElementById("controlsXText").textContent = Math.round(ship.x)
         document.getElementById("controlsYText").textContent = Math.round(ship.y)
+        mapUpdate()
     }
 
     setInterval(onUpdate, 50)
