@@ -9,7 +9,7 @@ This game is made with only 1 file.
 ## Help
 
 **Reset The Game**
-If you want to reste the game just hold F12 and paste this into the console:
+If you want to reset the game just hold F12 and paste this into the console:
 ```js
 ship = {
     x: 50,
