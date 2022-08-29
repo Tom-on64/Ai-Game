@@ -1,6 +1,6 @@
-# Ai Game
+# TermAI
 ---
-## You Can Play It [HERE](https://tom-on64.github.io/ai-game/)
+## You Can Play It [HERE](https://tom-on64.github.io/termai/)
 
 ## Info
 You Are An **AI**.
