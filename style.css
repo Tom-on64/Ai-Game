@@ -1,0 +1,88 @@
+* {
+    margin: 5px;
+    padding: 5px;
+    cursor: default;
+    overflow-wrap: break-word;
+    font-family: 'Mono Fonts', sans-serif;
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 21px;
+}
+
+body {
+    border: solid #00FF00 2px;
+    background-color: black;
+    height: 100%;
+}
+
+#input {
+    margin: 0px;
+    padding: 0px;
+    width: 97%;
+    border: none;
+    outline-width: 0;
+    background-color: black;
+}
+
+#prompt {
+    margin: 0px;
+    padding: 0px;
+    width: 5%;
+}
+
+/* Colors */
+.black {
+    color: #000000;
+}
+.red {
+    color: #FF0000;
+}
+.green {
+    color: #00FF00;
+}
+.blue {
+    color: #0000FF;
+}
+.yellow {
+    color: #FFFF00;
+}
+.magenta {
+    color: #FF00FF;
+}
+.cyan {
+    color: #00FFFF;
+}
+.white {
+    color: #FFFFFF;
+}
+/* Backgrounds */
+.blackBg {
+    background-color: #000000;
+}
+
+.redBg {
+    background-color: #FF0000;
+}
+
+.greenBg {
+    background-color: #00FF00;
+}
+
+.blueBg {
+    background-color: #0000FF;
+}
+
+.yellowBg {
+    background-color: #FFFF00;
+}
+
+.magentaBg {
+    background-color: #FF00FF;
+}
+
+.cyanBg {
+    background-color: #00FFFF;
+}
+
+.whiteBg {
+    background-color: #FFFFFF;
+}

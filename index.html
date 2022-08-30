@@ -4,9 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ai Game | Terminal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Fonts&family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+    <title>Terminal</title>
 </head>
-<body>
-    
+<body onClick="document.getElementById('input').focus()">
+    <div id="terminal">
+<span class="yellow" class="greenBg">
+_____                          ___   _____  <br>
+|_   _|                        / _ \ |_   _|<br>
+  | |    ___  _ __  _ __ ___  / /_\ \  | |  <br>
+  | |   / _ \| '__|| '_ ` _ \ |  _  |  | |  <br>
+  | |  |  __/| |   | | | | | || | | | _| |_ <br>
+  \_/   \___||_|   |_| |_| |_|\_| |_/ \___/ <br>
+</span>
+<span class="magenta"><i>Hint: Use <b>help</b> For A List of Commands!</i></span>
+    </div>
+    <label id="prompt">$</label><input class="green"  id="input"type="text"></textarea>
+    <script src="./js/main.js"></script>
 </body>
 </html>
